@@ -5,6 +5,11 @@ namespace ploc
 {
     class Program
     {
+        static void process_py_file(string file_path)
+        {
+            Console.WriteLine("process {0}", file_path);
+        }
+
         static void process_files(string dir_path)
         {
             Console.WriteLine("process files in {0}", dir_path);
@@ -16,7 +21,11 @@ namespace ploc
 
             foreach(string file in Directory.EnumerateFiles(dir_path))
             {
-                Console.WriteLine("file: {0}", file);
+                if (!file.EndsWith(".py"))
+                {
+                    Console.WriteLine("ignore file: {0}", file);
+                }
+                process_py_file(file);
             }
         }
         static void Main(string[] args)
